@@ -4,9 +4,9 @@ class TerrenoRochoso extends ObjetoDoMapa {
     static valor_hard_code_na_matriz = '2';
 
     constructor(i, j) {
-        super(i, j);
+        const tempo = 5;
 
-        this.tempo = 5;
+        super(i, j, tempo);
     }
 }
 

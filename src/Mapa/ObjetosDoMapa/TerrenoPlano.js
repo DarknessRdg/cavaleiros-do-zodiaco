@@ -4,9 +4,9 @@ class TerrenoPlano extends ObjetoDoMapa {
     static valor_hard_code_na_matriz = '1';
 
     constructor(i, j) {
-        super(i, j);
+        const tempo = 1;
 
-        this.tempo = 1;
+        super(i, j, tempo);
     }
 }
 

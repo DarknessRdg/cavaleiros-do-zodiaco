@@ -4,9 +4,9 @@ class TerrenoMontanhos extends ObjetoDoMapa {
     static valor_hard_code_na_matriz = '0';
 
     constructor(i, j) {
-        super(i, j);
+        const tempo = 200;
 
-        this.tempo = 200;
+        super(i, j, tempo);
     }
 }
 
