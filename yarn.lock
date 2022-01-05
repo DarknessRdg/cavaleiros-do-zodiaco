@@ -4376,6 +4376,11 @@ he@^1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
+heapify@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/heapify/-/heapify-0.5.0.tgz#43e301280bfeeba4feab2955e84e3f991ff96be5"
+  integrity sha512-TDVmyEfnJ4+UvBlRJxvCU879kgBOeTbSkXSdK1oZuEZ6vYKpDlVk4zMRc22Dbj6zwYm0p3h2T0rRe1b8Iiu1Kw==
+
 hoopy@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d661100033a9a9402ad3dea677381c1b1d"

@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import load_mapa from './Mapa';
 
 function App() {
+  console.log(load_mapa());
+
   return (
     <div className="App">
       <header className="App-header">
