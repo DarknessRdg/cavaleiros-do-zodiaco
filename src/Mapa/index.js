@@ -21,7 +21,12 @@ function load_mapa() {
         return obj;
     }));
 
-    return { mapa: mapa_com_objetos, casas: casas };
+    return { 
+        mapa: mapa_com_objetos, 
+        casas: casas,
+        posicao_inicio: [10, 37],
+        posicao_de_destino: [4, 37]
+    };
 }
 
 /**
