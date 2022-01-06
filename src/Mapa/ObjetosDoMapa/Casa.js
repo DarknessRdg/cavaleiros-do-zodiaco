@@ -48,6 +48,10 @@ class Casa extends ObjetoDoMapa {
         if (this.direcao_da_porta === undefined) throw new DirecaoDaPortaInvalida(direcao_da_porta)
         if (this.tempo === undefined) throw new PosicaoInvalida(posicao);
     }
+
+    esta_para_esquerda() { return this.direcao_da_porta === 'ESQUERDA'; }
+    esta_para_direita() { return this.direcao_da_porta === 'DIREITA'; }
+    esta_para_baixo() { return this.direcao_da_porta === 'BAIXO'; }
 }
 
 export default Casa;
