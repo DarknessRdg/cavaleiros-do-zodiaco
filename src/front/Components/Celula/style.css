@@ -20,3 +20,7 @@
 .celula.casa {
     background-color: rgb(231, 97, 8);
 }
+
+.celula.inicio {
+    background-color: rgb(8, 231, 27) !important;
+}

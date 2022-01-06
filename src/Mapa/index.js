@@ -24,8 +24,8 @@ function load_mapa() {
     return { 
         mapa: mapa_com_objetos, 
         casas: casas,
-        posicao_inicio: [10, 37],
-        posicao_de_destino: [4, 37]
+        objeto_inicio: mapa_com_objetos[37][37],
+        objeto_destino: mapa_com_objetos[4][37]
     };
 }
 

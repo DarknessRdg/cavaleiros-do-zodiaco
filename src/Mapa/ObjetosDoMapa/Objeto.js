@@ -4,6 +4,10 @@ class ObjetoDoMapa {
         this.j = j;
         this.tempo = tempo;
     }
+
+    coordenadas() {
+        return [this.i, this.j]
+    }
 }
 
 export default ObjetoDoMapa;
