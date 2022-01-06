@@ -1,7 +1,11 @@
+import utils from "./utils";
+
 class No {
     constructor ({ i, j, custo, heuristica, proxima_casa, no_pai = undefined }) {
         this.i = i;
         this.j = j;
+
+        this.custo_bruto = custo;
 
         this.pai = no_pai;
         this.proxima_casa = proxima_casa;
@@ -18,7 +22,7 @@ class No {
     coordenadas() { return [this.i, this.j]; }
 
     eh_casa() {
-        return this.coordenadas() === this.proxima_casa.coordenadas();
+        return utils.arrayEquals(this.coordenadas(), this.proxima_casa.coordenadas());
     }
 
     /**

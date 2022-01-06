@@ -5,7 +5,8 @@ import LinhaDoMapa from '../LinhaDoMapa';
 
 export default function Mapa() {
     const simulador = new Simulador();
-    simulador.econtrar_caminho();
+    const resp = simulador.econtrar_caminho();
+    console.log(resp)
 
     let mapa = simulador.mapa;
 

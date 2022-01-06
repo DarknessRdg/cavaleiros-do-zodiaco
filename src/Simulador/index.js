@@ -1,7 +1,9 @@
 import load_mapa from '../Mapa';
+import Casa from '../Mapa/ObjetosDoMapa/Casa';
 import FilaDePrioridade from './FilaDePrioridade';
 import No from './No';
 import params from './params';
+import utils from './utils';
 
 class Simulador {
     constructor() {
@@ -36,55 +38,123 @@ class Simulador {
         while (!this.fronteira.esta_vazia()) {
             console.log(cont)
             const no = this.fronteira.desenfileira();
+            this.visitar(no)
 
             if (this.achou_no_de_destino(no)) {
                 return no.caminho_da_raiz_ate_o_no();
             }
 
             cont ++;
-            if (cont === 200) break;
+            if (cont === 2000) break;
             this.fronteira.enfileira_todos(this.adjacentes(no));
         }
 
         console.log(this.fronteira.fila)
     }
 
+    visitar(no) {
+        console.log('visitando no', no)
+        this.mapa[no.i][no.j].visitado = true;
+    }
+
     get_casa(posicao) {return this.casas.filter(it => it.posicao === posicao)[0]; }
 
     achou_no_de_destino(no) {
-        return no.coordenadas() === this.destino.coordenadas();
+        return utils.arrayEquals(no.coordenadas(), this.destino.coordenadas());
     }
 
     adjacentes(no) {
-        console.log('add aj', no)
+        console.log('add adj para', no);
+
         if (no.eh_casa()) {
-            return this.adjacentes_da_casa(no.proxima_casa);
+            return this.adjacentes_da_casa(no);
         }
 
-        const [i, j] = no.coordenadas();
-
-        const adj = [
-            this.no_a_patir_do_objeto({obj: this.mapa[i+1][j], pai: no, em_direcao_a_casa: no.proxima_casa}),
-            this.no_a_patir_do_objeto({obj: this.mapa[i-1][j], pai: no, em_direcao_a_casa: no.proxima_casa}),
-            this.no_a_patir_do_objeto({obj: this.mapa[i][j+1], pai: no, em_direcao_a_casa: no.proxima_casa}),
-            this.no_a_patir_do_objeto({obj: this.mapa[i][j-1], pai: no, em_direcao_a_casa: no.proxima_casa}),
+        const objetos_ajd = [
+            this.cima(no),
+            this.baixo(no),
+            this.esquerda(no),
+            this.direita(no)
         ]
 
-        return adj.filter(it => it.custo <= params.TEMPO_MAXIMO_EM_MIN);
+
+        return objetos_ajd
+            .filter(it => it.tempo < 200)
+            .map(it => this.no_a_patir_do_objeto({obj: it, pai: no, em_direcao_a_casa: no.proxima_casa}))
+            .filter(it => !this.mapa[it.i][it.j].visitado)
+            .filter(it => it.custo <= params.TEMPO_MAXIMO_EM_MIN);
     }
 
-    adjacentes_da_casa(casa) {
-        return []
+    adjacentes_da_casa(no_casa) {
+        const casa = no_casa.proxima_casa;
+        let proxima_casa = this.get_casa(casa.posicao+1);
+
+        if (proxima_casa === undefined) {
+            proxima_casa = this.destino;
+        }
+
+        console.log('ACHOU A CASA ----')
+        console.log('caminho ate a casa: ', no_casa.caminho_da_raiz_ate_o_no());
+        
+
+        this.fronteira.esvaziar();
+
+        console.log(this.fronteira)
+
+        if (casa.esta_para_esquerda()) {
+            return [ this.no_a_patir_do_objeto({
+                obj: this.direita(no_casa), 
+                pai: no_casa, 
+                em_direcao_a_casa: proxima_casa
+            })]
+        }
+
+        if (casa.esta_para_direita()) {
+            return [ this.no_a_patir_do_objeto({
+                obj: this.esquerda(no_casa), 
+                pai: no_casa, 
+                em_direcao_a_casa: proxima_casa
+            })]
+        }
+
+        if (casa.esta_para_baixo()) {
+            return [ this.no_a_patir_do_objeto({
+                obj: this.cima(no_casa), 
+                pai: no_casa, 
+                em_direcao_a_casa: proxima_casa
+            })]
+        }
+    }
+
+    cima(no) {
+        return this.mapa[no.i-1][no.j];
+    }
+
+    baixo(no) {
+        return this.mapa[no.i+1][no.j];
+    }
+
+    esquerda(no) {
+        return this.mapa[no.i][no.j-1];
+    }
+
+    direita(no) {
+        return this.mapa[no.i][no.j+1];
     }
 
     no_a_patir_do_objeto({ obj, pai, em_direcao_a_casa }) {
         console.log('criar no para obj', obj)
         console.log('criar no para obj em_direcao_a_casa', em_direcao_a_casa)
-        
+
+        let c = obj.tempo;
+        if (obj instanceof Casa) {
+            c = 0;
+        }
+
         return new No({ 
             i: obj.i, 
             j: obj.j, 
-            custo: obj.tempo, 
+            custo: c, 
             heuristica: this.custo_ate_proxima_casa(obj, pai),
             no_pai: pai,
             proxima_casa: em_direcao_a_casa
@@ -93,13 +163,12 @@ class Simulador {
 
 
     custo_ate_proxima_casa(no, pai) {
-        return 0
-        // if (!pai) return 0;
+        if (!pai) return 0;
 
-        // const [i_casa, j_casa] = pai.proxima_casa.coordenadas();
-        // const [i, j] = no.coordenadas();
+        const [casa_i, casa_j] = pai.proxima_casa.coordenadas();
+        const [i, j] = no.coordenadas();
 
-        // return Math.abs(i_casa - i) + Math.abs(j_casa - j);
+        return Math.abs(casa_i - i) + Math.abs(casa_j - j);
     }
 };
 

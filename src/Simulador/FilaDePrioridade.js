@@ -25,6 +25,12 @@ class FilaDePrioridade {
     esta_vazia() {
         return this.fila.length === 0;
     }
+
+    esvaziar() {
+        while (!this.esta_vazia()) {
+            this.desenfileira();
+        }
+    }
 }
 
 
