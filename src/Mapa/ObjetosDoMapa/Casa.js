@@ -41,6 +41,8 @@ class Casa extends ObjetoDoMapa {
     constructor(posicao, direcao_da_porta, i, j) {
         super(i, j);
 
+        this.eh_casa = true;
+
         this.tempo = DIFICULDADE_DAS_CASA_POR_POSICAO[posicao];
         this.posicao = posicao;
         this.direcao_da_porta = DirecaoDaPorta[direcao_da_porta];
