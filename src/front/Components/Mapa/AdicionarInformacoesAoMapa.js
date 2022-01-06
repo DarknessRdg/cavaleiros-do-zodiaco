@@ -5,6 +5,7 @@ function add_id_do_caminho(mapa, caminho) {
         if (!obj_do_mapa.de_inicio) {
             obj_do_mapa.passou_por_aqui = true;
             obj_do_mapa.caminho_id = index + 1;
+            obj_do_mapa.passo = passo;
         }
         
     });
