@@ -24,3 +24,11 @@
 .celula.inicio {
     background-color: rgb(8, 231, 27) !important;
 }
+
+.celula.destino {
+    background-color: rgb(23, 8, 231) !important;
+}
+
+.celula.passou {
+    background-color: rgb(209, 171, 4) !important;
+}

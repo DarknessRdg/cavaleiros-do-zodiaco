@@ -21,11 +21,17 @@ function load_mapa() {
         return obj;
     }));
 
-    return { 
+    const objeto_inicio = mapa_com_objetos[37][37];
+    objeto_inicio.de_inicio = true;
+
+    const objeto_destino = mapa_com_objetos[4][37];
+    objeto_destino.de_destino = true;
+
+    return {
         mapa: mapa_com_objetos, 
         casas: casas,
-        objeto_inicio: mapa_com_objetos[37][37],
-        objeto_destino: mapa_com_objetos[4][37]
+        objeto_inicio: objeto_inicio,
+        objeto_destino: objeto_destino
     };
 }
 
