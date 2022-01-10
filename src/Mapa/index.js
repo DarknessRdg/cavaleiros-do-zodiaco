@@ -3,6 +3,7 @@ import TerrenoMontanhos from './ObjetosDoMapa/TerrenoMontanhoso';
 import TerrenoPlano from './ObjetosDoMapa/TerrenoPlano';
 import TerrenoRochoso from './ObjetosDoMapa/TerrenoRochoso';
 import mapa from './mapa';
+import Cavaleiro from './Cavaleiros';
 
 
 function load_mapa() {
@@ -31,7 +32,8 @@ function load_mapa() {
         mapa: mapa_com_objetos, 
         casas: casas,
         objeto_inicio: objeto_inicio,
-        objeto_destino: objeto_destino
+        objeto_destino: objeto_destino,
+        cavaleiros: Cavaleiro.todos()
     };
 }
 

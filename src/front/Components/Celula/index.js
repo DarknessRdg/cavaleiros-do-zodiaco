@@ -62,6 +62,7 @@ export default function CelulaDoMapa({ objeto_do_jogo }) {
                 </div>
                 <div className="modal-body">
                     <ul>
+                        <li>Tipo de terrono: {tipo_de_celula}</li>
                         <li>Tempo necessário: {objeto_do_jogo.tempo}</li>
 
                         <li> Custo até a aqui: {objeto_do_jogo.passou_por_aqui ? objeto_do_jogo.passo.custo : "Não passou por aqui"} </li>

@@ -54,6 +54,20 @@ class Casa extends ObjetoDoMapa {
     esta_para_esquerda() { return this.direcao_da_porta === 'ESQUERDA'; }
     esta_para_direita() { return this.direcao_da_porta === 'DIREITA'; }
     esta_para_baixo() { return this.direcao_da_porta === 'BAIXO'; }
+
+    calcular_tempo_da_luta(cavaleiros) {
+        const tempo = this.tempo / this._poder_te_todos(cavaleiros);
+        return Math.ceil(tempo);
+    }
+
+    _poder_te_todos(cavaleiros) {
+        let poder = 0;
+
+        for (const cavaleiro of cavaleiros) {
+            poder += cavaleiro.poder_cosmico;
+        }
+        return poder;
+    }
 }
 
 export default Casa;

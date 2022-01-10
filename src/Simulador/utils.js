@@ -2,49 +2,33 @@ function arrayEquals(a, b) {
     return JSON.stringify(a) === JSON.stringify(b);
 }
 
-/**
- * Retorna o {ObjetoDoMapa} da coordenada acima
- * 
- * @param {ObjetoDoMapa | No} no 
- * @returns {ObjetoDoMapa}
- */
- function cima(no) {
-    return this.mapa[no.i-1][no.j];
-}
+function combinacoes(valuesArray) {
+    var combi = [];
+    var temp = [];
+    var slent = Math.pow(2, valuesArray.length);
 
-/**
- * Retorna o {ObjetoDoMapa} da coordenada abaixo
- * 
- * @param {ObjetoDoMapa | No} no 
- * @returns {ObjetoDoMapa}
- */
-function baixo(no) {
-    return this.mapa[no.i+1][no.j];
-}
+    for (var i = 0; i < slent; i++)
+    {
+        temp = [];
+        for (var j = 0; j < valuesArray.length; j++)
+        {
+            if ((i & Math.pow(2, j)))
+            {
+                temp.push(valuesArray[j]);
+            }
+        }
+        if (temp.length > 0)
+        {
+            combi.push(temp);
+        }
+    }
 
-/**
- * Retorna o {ObjetoDoMapa} da coordenada à esquerda
- * 
- * @param {ObjetoDoMapa | No} no 
- * @returns {ObjetoDoMapa}
- */
- function esquerda(no) {
-    return this.mapa[no.i][no.j-1];
-}
-
-/**
- * Retorna o {ObjetoDoMapa} da coordenada à direita
- * 
- * @param {ObjetoDoMapa | No} no 
- * @returns {ObjetoDoMapa}
- */
- function direita(no) {
-    return this.mapa[no.i][no.j+1];
+    combi.sort((a, b) => a.length - b.length);
+    return combi;
 }
 
 
 export default {
-    arrayEquals
+    arrayEquals,
+    combinacoes
 };
-
-
