@@ -25,6 +25,15 @@ const generateUUID = () => {
     });
   };
 
+
+function InformacoesCasa(casa) {
+    const time = casa.time.map(it => it.nome).join(', ');
+
+    return <>
+        <li>Tempo de luta da casa: {casa.tempo}</li>
+        <li>Quem lutou: {time}.</li>
+    </>
+}
   
 export default function CelulaDoMapa({ objeto_do_jogo }) {
     let de_inicio = ''
@@ -67,6 +76,7 @@ export default function CelulaDoMapa({ objeto_do_jogo }) {
 
                         <li> Custo até a aqui: {objeto_do_jogo.passou_por_aqui ? objeto_do_jogo.passo.custo : "Não passou por aqui"} </li>
 
+                        {objeto_do_jogo.eh_casa ? InformacoesCasa(objeto_do_jogo) : ""}
                     </ul>
                 </div>
                 <div className="modal-footer">

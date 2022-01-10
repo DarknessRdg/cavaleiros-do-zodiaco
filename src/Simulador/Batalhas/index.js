@@ -51,7 +51,7 @@ export default class BuscarMelhorCombinacaoDeBatalha {
         caminho.forEach(no => {
             const casa = this._get_casa(no.casa.posicao);
             casa.tempo = no.tempo_de_luta;
-            casa.timte = no.time;
+            casa.time = no.time;
         })
         
     }
