@@ -221,11 +221,6 @@ export default class BuscarMenorCaminho {
 function no_a_patir_do_objeto({ obj, pai, em_direcao_a }) {
     let custo = obj.tempo;
 
-    // tempo da casa é desconsiderado porque é calculado em outra busca
-    if (obj instanceof Casa) {
-        custo = 0;
-    }
-
     return new No({ 
         i: obj.i, 
         j: obj.j, 

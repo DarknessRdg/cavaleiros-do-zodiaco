@@ -5,6 +5,8 @@ export default class No {
         this.pai = pai;
         this.casa = casa;
 
+        this.tempo_de_luta = this._calcular_tempo_de_luta(time);
+
         let custo = this._calcular_tempo_de_luta(time);
 
         if (this._tem_pai()) {
@@ -14,7 +16,9 @@ export default class No {
         }
 
         this.custo = custo;
-        this.custo_avaliativo = custo - this._poder_te_todos() * (12 - casa.posicao + 1);
+        this.custo_avaliativo = -(
+            custo * (this._poder_te_todos()/casa.posicao)
+        )
 
         this._lutar();
     }

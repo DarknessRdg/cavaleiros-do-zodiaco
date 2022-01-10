@@ -18,14 +18,14 @@ function combinacoes(valuesArray) {
         }
     }
 
-    combi = combi.filter(it => it.length <= 3);
+    combi = combi.filter(it => it.length <= 2);
     return combi;
 }
 
 
 export default class BuscarMelhorCombinacaoDeBatalha {
     constructor({ casas, cavaleiros }) {
-        this.casas = [...casas];
+        this.casas = casas;
         this._ordenar_as_casa();
 
         this.cavaleiros = cavaleiros;
@@ -46,7 +46,14 @@ export default class BuscarMelhorCombinacaoDeBatalha {
     }
 
     atualizar_tempo_das_casa() {
-        this._busca_a_estrela();
+        const caminho = this._busca_a_estrela();
+
+        caminho.forEach(no => {
+            const casa = this._get_casa(no.casa.posicao);
+            casa.tempo = no.tempo_de_luta;
+            casa.timte = no.time;
+        })
+        
     }
 
     _busca_a_estrela() {
@@ -71,7 +78,7 @@ export default class BuscarMelhorCombinacaoDeBatalha {
             }
 
             console.log(cont)
-            if (cont === 20000) break;
+            if (cont === 50000) break;
 
             this.fronteira.enfileira_todos(
                 this.adjacentes(no)
