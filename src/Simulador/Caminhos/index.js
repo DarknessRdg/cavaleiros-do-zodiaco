@@ -1,8 +1,8 @@
-import Casa from '../Mapa/ObjetosDoMapa/Casa';
-import FilaDePrioridade from './FilaDePrioridade';
+import Casa from '../../Mapa/ObjetosDoMapa/Casa';
+import FilaDePrioridade from '../FilaDePrioridade';
 import No from './No';
-import params from './params';
-import utils from './utils';
+import params from '../params';
+import utils from '../utils';
 
 const { arrayEquals } = utils;
 

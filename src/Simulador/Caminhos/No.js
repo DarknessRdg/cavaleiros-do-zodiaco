@@ -1,4 +1,4 @@
-import utils from "./utils";
+import utils from "../utils";
 
 class No {
     constructor ({ i, j, custo, heuristica, em_direcao_a, no_pai = undefined }) {

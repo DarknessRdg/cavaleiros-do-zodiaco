@@ -1,6 +1,6 @@
 import load_mapa from '../Mapa';
 import BuscarMelhorCombinacaoDeBatalha from './Batalhas';
-import BuscarMenorCaminho from './BuscarMenorCaminho';
+import BuscarMenorCaminho from './Caminhos';
 import params from './params';
 
 class Simulador {
