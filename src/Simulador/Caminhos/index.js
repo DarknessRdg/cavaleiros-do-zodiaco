@@ -121,7 +121,6 @@ export default class BuscarMenorCaminho {
         }))
 
         return objetos_ajd
-            .filter(it => it.custo_bruto < 200)
             .filter(it => !this.mapa[it.i][it.j].visitado)
             .filter(it => it.custo <= params.TEMPO_MAXIMO_EM_MIN);
     }
